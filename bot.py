@@ -1,6 +1,9 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, CallbackContext
 import os
+from flask import Flask, request, jsonify
+import requests
+import logging
 
 # List of model photos (local file paths) and names
 models = [
@@ -41,6 +44,40 @@ async def button(update: Update, context: CallbackContext) -> None:
         model_name = query.data.split('_')[1]
         await query.edit_message_text(text=f"You've subscribed to {model_name}!")
         # Add additional subscription logic (e.g., database update, payment, etc.)
+
+# Set up logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Set up Flask
+app = Flask(__name__)
+
+# PayPal IPN URL (this will be set to the Heroku app's URL)
+PAYPAL_IPN_URL = "https://onlyfan-6cc5a61b58dd.herokuapp.com/ipn"  # Change this with your Heroku URL
+
+# PayPal IPN endpoint to verify payment
+@app.route("/ipn", methods=["POST"])
+def ipn():
+    ipn_data = request.form.to_dict()
+
+    # You need to send the received IPN message to PayPal for verification
+    verification_url = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"
+    verification_data = {
+        "cmd": "_notify-validate",
+        **ipn_data
+    }
+    response = requests.post(verification_url, data=verification_data)
+
+    if response.text == "VERIFIED":
+        # Payment verified, process the subscription
+        logger.info("Payment verified")
+        # Handle subscription logic (e.g., activate subscription, update user record, etc.)
+        return jsonify({"message": "Payment verified and processed."})
+    else:
+        logger.error("Payment verification failed")
+        return jsonify({"message": "Payment verification failed."})
+
 
 def main() -> None:
     # Set up the bot with your token
