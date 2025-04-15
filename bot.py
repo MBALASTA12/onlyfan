@@ -50,12 +50,21 @@ async def start(update: Update, context: CallbackContext) -> None:
         except:
             await update.message.reply_text(f"Image for {model['name']} could not be loaded.")
 
-async def button(update: Update, context: CallbackContext) -> None:
+async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-    if query.data.startswith("subscribe_"):
-        model_name = query.data.split('_', 1)[1]
-        await query.edit_message_text(text=f"You've subscribed to {model_name}!")
+
+    model_name = query.data
+
+    try:
+        if query.message.text:
+            await query.edit_message_text(text=f"You've subscribed to {model_name}!")
+        elif query.message.caption:
+            await query.edit_message_caption(caption=f"You've subscribed to {model_name}!")
+        else:
+            await query.message.reply_text(f"You've subscribed to {model_name}!")  # fallback
+    except Exception as e:
+        print(f"Error editing message: {e}")
 
 def start_telegram_bot():
     application = Application.builder().token(os.environ["BOT_API_TOKEN"]).build()
