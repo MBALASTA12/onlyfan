@@ -7,8 +7,8 @@ import logging
 
 # List of model photos (local file paths) and names
 models = [
-    {"name": "Agustina Alexia", "photo": r"D:\Project\OnlyfansBot\photo\Profile.png"},
-    {"name": "Pia", "photo": r"D:\Project\OnlyfansBot\photo\profile.jpg"},
+    {"name": "Agustina Alexia", "photo": r"https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG"},
+    {"name": "Pia", "photo": r"https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg"},
     # Add more models here with their respective file paths
 ]
 
