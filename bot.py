@@ -54,17 +54,22 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    model_name = query.data
+    model_name = query.data.split("_")[1]  # Extract model name from callback data
+    payment_url = f"https://www.paypal.com/sdk/js?client-id=BAA9knP12hxopme72RoJs8AnrcJaEqAv5X3Rqvdo1jXxFuuw49PT9wgBCaj2YQMPXg-Znub9Vt6ZnOf85s&components=hosted-buttons&disable-funding=venmo&currency=USD&button-id=GN3XVM23THZGE"
 
     try:
         if query.message.text:
-            await query.edit_message_text(text=f"You've subscribed to {model_name}!")
+            # Edit message text to confirm subscription
+            await query.edit_message_text(text=f"You've subscribed to {model_name}! Please proceed with payment: {payment_url}")
         elif query.message.caption:
-            await query.edit_message_caption(caption=f"You've subscribed to {model_name}!")
+            # Edit caption to confirm subscription
+            await query.edit_message_caption(caption=f"You've subscribed to {model_name}! Please proceed with payment: {payment_url}")
         else:
-            await query.message.reply_text(f"You've subscribed to {model_name}!")  # fallback
+            # Fallback message
+            await query.message.reply_text(f"You've subscribed to {model_name}! Please proceed with payment: {payment_url}")
     except Exception as e:
         print(f"Error editing message: {e}")
+
 
 def start_telegram_bot():
     application = Application.builder().token(os.environ["BOT_API_TOKEN"]).build()
