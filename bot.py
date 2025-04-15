@@ -81,7 +81,8 @@ async def button(update: Update, context: CallbackContext) -> None:
 
 def start_telegram_bot():
     # Set up the bot with your token
-    application = Application.builder().token("7848323018:AAHxtPX3huG4_4ZuNQamUvp7IIrY135bPaw").build()
+    application = Application.builder().token(os.environ["7848323018:AAHxtPX3huG4_4ZuNQamUvp7IIrY135bPaw"]).build()
+
 
     # Add command handler for /start
     application.add_handler(CommandHandler("start", start))
