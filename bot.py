@@ -1,4 +1,4 @@
-﻿from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+﻿from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Bot
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, CallbackContext, ContextTypes
 import os
 from flask import Flask, request, jsonify
@@ -15,11 +15,12 @@ models = [
     {"name": "Pia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg", "price": 10.00},
 ]
 
-
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+
+bot = Bot(token=os.environ["BOT_API_TOKEN"])
 
 @app.route("/ipn", methods=["POST"])
 def ipn():
@@ -32,10 +33,23 @@ def ipn():
     response = requests.post(verification_url, data=verification_data)
     if response.text == "VERIFIED":
         logger.info(f"Payment VERIFIED: {ipn_data}")
+
+        # Get the user ID from the custom field
+        user_id = ipn_data.get("custom", None)
+
+        # Send a message to the user directly in Telegram
+        if user_id:
+            try:
+                message = "Hi! Your payment has been successfully processed. Thank you for subscribing!"
+                bot.send_message(chat_id=user_id, text=message)
+            except Exception as e:
+                logger.error(f"Error sending message to user: {e}")
+
         return jsonify({"message": "Payment verified and processed."})
     else:
         logger.error(f"Payment verification FAILED: {ipn_data}")
         return jsonify({"message": "Payment verification failed."})
+
 
 async def start(update: Update, context: CallbackContext) -> None:
     for model in models:
@@ -53,7 +67,6 @@ async def start(update: Update, context: CallbackContext) -> None:
             )
         except Exception as e:
             logger.error(f"Error sending message: {e}")
-
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -97,8 +110,6 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.message.reply_text(message, reply_markup=keyboard)
     except Exception as e:
         logger.error(f"Error editing message: {e}")
-
-
 
 
 def start_telegram_bot():
