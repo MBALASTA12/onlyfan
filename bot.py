@@ -45,13 +45,17 @@ async def start(update: Update, context: CallbackContext) -> None:
         )
         keyboard = [[button]]
         try:
+            # Send message with both caption and text
             await update.message.reply_photo(
                 photo=model['photo'],
                 caption=f"{model['name']}",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
-        except:
-            await update.message.reply_text(f"Image for {model['name']} could not be loaded.")
+            # Add a text message as fallback (in case caption is missing or empty)
+            await update.message.reply_text(f"To subscribe to {model['name']}, tap the button below.")
+        except Exception as e:
+            logger.error(f"Error sending message: {e}")
+
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -84,10 +88,17 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         message = f"You've subscribed to {model_name}!\n\nClick below to proceed with payment."
 
-        # Edit the message to show the PayPal button
-        await query.edit_message_text(text=message, reply_markup=keyboard)
+        # Check if the message contains text or caption and edit accordingly
+        if query.message.text:
+            await query.edit_message_text(text=message, reply_markup=keyboard)
+        elif query.message.caption:
+            await query.edit_message_caption(caption=message, reply_markup=keyboard)
+        else:
+            # Fallback message if neither text nor caption exists
+            await query.message.reply_text(message, reply_markup=keyboard)
     except Exception as e:
         logger.error(f"Error editing message: {e}")
+
 
 
 
