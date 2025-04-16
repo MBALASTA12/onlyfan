@@ -45,16 +45,15 @@ async def start(update: Update, context: CallbackContext) -> None:
         )
         keyboard = [[button]]
         try:
-            # Send message with both caption and text
+            # Send message with both caption and photo
             await update.message.reply_photo(
                 photo=model['photo'],
                 caption=f"{model['name']}",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
-            # Add a text message as fallback (in case caption is missing or empty)
-            await update.message.reply_text(f"To subscribe to {model['name']}, tap the button below.")
         except Exception as e:
             logger.error(f"Error sending message: {e}")
+
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
