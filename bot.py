@@ -119,6 +119,11 @@ async def start(update: Update, context: CallbackContext) -> None:
             logger.error(f"Error sending message: {e}")
 
 
+@app.route("/success", methods=["GET"])
+def payment_success():
+    return redirect("https://t.me/OnlyFanAgencyBot?start=success")  # Replace with your actual bot username
+
+
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
