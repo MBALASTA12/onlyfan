@@ -77,13 +77,14 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"&custom={user_id}"
     )
 
-    # Create an inline button with the PayPal payment URL
+    # Create an inline button that links directly to the PayPal payment page
     payment_button = InlineKeyboardButton(text=f"Pay {model_price:.2f} USD", url=payment_url)
     keyboard = InlineKeyboardMarkup([[payment_button]])
 
     try:
         message = f"You've subscribed to {model_name}!\n\nClick below to proceed with payment."
-        # Send the message with the PayPal button
+
+        # Edit the message to show the PayPal button
         await query.edit_message_text(text=message, reply_markup=keyboard)
     except Exception as e:
         logger.error(f"Error editing message: {e}")
