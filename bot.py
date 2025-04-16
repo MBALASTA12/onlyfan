@@ -98,7 +98,15 @@ def ipn():
 
 
 
-async def start(update: Update, context: CallbackContext) -> None:
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    args = context.args
+
+    # If the user came from the PayPal redirect with start=success
+    if args and args[0] == "success":
+        await update.message.reply_text("✅ Payment successful! You’re now subscribed. Welcome to the private club 🔥")
+        return  # Stop here, no need to show models
+
+    # Otherwise, show model options
     for model in models:
         button = InlineKeyboardButton(
             text=f"Subscribe to {model['name']}",
@@ -106,17 +114,15 @@ async def start(update: Update, context: CallbackContext) -> None:
         )
         keyboard = [[button]]
         try:
-            # Send message with both caption, photo, and description
-            message = f"{model['name']}\n\n{model['description']}"  # Including the model description
-
-            # Send the photo with the caption and description
+            message = f"{model['name']}\n\n{model['description']}"
             await update.message.reply_photo(
                 photo=model['photo'],
-                caption=message,  # Send the model name and description as caption
+                caption=message,
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
         except Exception as e:
             logger.error(f"Error sending message: {e}")
+
 
 
 @app.route("/success", methods=["GET"])
