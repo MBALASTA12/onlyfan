@@ -58,24 +58,44 @@ def ipn():
         **ipn_data
     }
     response = requests.post(verification_url, data=verification_data)
+    
     if response.text == "VERIFIED":
         logger.info(f"Payment VERIFIED: {ipn_data}")
 
-        # Get the user ID from the custom field
-        user_id = ipn_data.get("custom", None)
-
-        # Send a message to the user directly in Telegram
-        if user_id:
+        # Expecting custom format: "<user_id>:<model_name>"
+        custom_data = ipn_data.get("custom", "")
+        if ":" in custom_data:
+            user_id_str, model_name = custom_data.split(":", 1)
             try:
-                message = "Hi! Your payment has been successfully processed. Thank you for subscribing!"
-                bot.send_message(chat_id=user_id, text=message)
+                user_id = int(user_id_str.strip())
+            except ValueError:
+                logger.error("Invalid user ID format.")
+                return jsonify({"message": "Invalid user ID format."})
+        else:
+            logger.error("Custom data missing or invalid format.")
+            return jsonify({"message": "Missing or invalid custom data."})
+
+        # Find the model info
+        selected_model = next((m for m in models if m["name"].lower() == model_name.strip().lower()), None)
+        if selected_model:
+            try:
+                message = (
+                    f"Hi babe! 💖 Your payment was successful!\n\n"
+                    f"Here’s your exclusive access to *{selected_model['name']}*'s private channel:\n"
+                    f"{selected_model['channel_link']}\n\n"
+                    f"Enjoy the content – and welcome to the private side. 🔥"
+                )
+                bot.send_message(chat_id=user_id, text=message, parse_mode="Markdown")
             except Exception as e:
                 logger.error(f"Error sending message to user: {e}")
+        else:
+            logger.error(f"Model not found: {model_name}")
 
         return jsonify({"message": "Payment verified and processed."})
     else:
         logger.error(f"Payment verification FAILED: {ipn_data}")
         return jsonify({"message": "Payment verification failed."})
+
 
 
 async def start(update: Update, context: CallbackContext) -> None:
