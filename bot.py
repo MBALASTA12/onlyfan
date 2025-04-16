@@ -52,7 +52,7 @@ bot = Bot(token=os.environ["BOT_API_TOKEN"])
 @app.route("/ipn", methods=["POST"])
 def ipn():
     ipn_data = request.form.to_dict()
-    verification_url = "https://sandbox.paypal.com"  # LIVE endpoint
+    verification_url = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"  # LIVE endpoint
     verification_data = {
         "cmd": "_notify-validate",
         **ipn_data
@@ -136,7 +136,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Create the PayPal payment link with dynamic pricing
     payment_url = (
-        f"https://www.paypal.com/cgi-bin/webscr"
+        f"https://sandbox.paypal.com"
         f"?cmd=_xclick&business={PAYPAL_EMAIL}"
         f"&item_name=Subscription+to+{model_name}"
         f"&amount={model_price:.2f}&currency_code=USD"
