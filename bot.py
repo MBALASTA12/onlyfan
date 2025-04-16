@@ -136,13 +136,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Create the PayPal payment link with dynamic pricing
     payment_url = (
-    f"https://www.sandbox.paypal.com/cgi-bin/webscr"
+    f"https://sandbox.paypal.com/cgi-bin/webscr"
     f"?cmd=_xclick&business={PAYPAL_EMAIL}"
     f"&item_name=Subscription+to+{model_name}"
     f"&amount={model_price:.2f}&currency_code=USD"
     f"&notify_url={PAYPAL_IPN_URL}"
-    f"&custom={user_id}:{model_name}"
     f"&return=https://onlyfan-6cc5a61b58dd.herokuapp.com/success"
+    f"&custom={user_id}:{model_name}"
 )
 
     # Create an inline button that links directly to the PayPal payment page
@@ -162,6 +162,20 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.message.reply_text(message, reply_markup=keyboard)
     except Exception as e:
         logger.error(f"Error editing message: {e}")
+
+@app.route("/success")
+def payment_success():
+    return """
+    <html>
+      <head><title>Payment Success</title></head>
+      <body style="text-align: center; font-family: Arial;">
+        <h1>✅ Payment Successful</h1>
+        <p>Thank you for your subscription.</p>
+        <p>You may now close this tab.</p>
+      </body>
+    </html>
+    """
+
 
 
 def start_telegram_bot():
