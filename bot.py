@@ -6,9 +6,13 @@ import requests
 import logging
 from threading import Thread
 
+# Replace this with your PayPal LIVE business email
+PAYPAL_EMAIL = "abastasjeogeel12@gmail.com"  # <-- UPDATE THIS
+PAYPAL_IPN_URL = "https://onlyfan-6cc5a61b58dd.herokuapp.com/ipn"
+
 models = [
-    {"name": "Agustina Alexia", "photo": r"https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG"},
-    {"name": "Pia", "photo": r"https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg"},
+    {"name": "Agustina Alexia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG"},
+    {"name": "Pia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg"},
 ]
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -16,22 +20,20 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-PAYPAL_IPN_URL = "https://onlyfan-6cc5a61b58dd.herokuapp.com/ipn"
-
 @app.route("/ipn", methods=["POST"])
 def ipn():
     ipn_data = request.form.to_dict()
-    verification_url = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"
+    verification_url = "https://ipnpb.paypal.com/cgi-bin/webscr"  # LIVE endpoint
     verification_data = {
         "cmd": "_notify-validate",
         **ipn_data
     }
     response = requests.post(verification_url, data=verification_data)
     if response.text == "VERIFIED":
-        logger.info("Payment verified")
+        logger.info(f"Payment VERIFIED: {ipn_data}")
         return jsonify({"message": "Payment verified and processed."})
     else:
-        logger.error("Payment verification failed")
+        logger.error(f"Payment verification FAILED: {ipn_data}")
         return jsonify({"message": "Payment verification failed."})
 
 async def start(update: Update, context: CallbackContext) -> None:
@@ -54,21 +56,29 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    model_name = query.data.split("_")[1]  # Extract model name from callback data
-    payment_url = f"https://www.paypal.com/sdk/js?client-id=BAA9knP12hxopme72RoJs8AnrcJaEqAv5X3Rqvdo1jXxFuuw49PT9wgBCaj2YQMPXg-Znub9Vt6ZnOf85s&components=hosted-buttons&disable-funding=venmo&currency=USD&button-id=GN3XVM23THZGE"
+    model_name = query.data.split("_")[1]
+    user_id = query.from_user.id
+
+    # Direct PayPal payment link
+    payment_url = (
+        f"https://www.paypal.com/cgi-bin/webscr"
+        f"?cmd=_xclick&business={PAYPAL_EMAIL}"
+        f"&item_name=Subscription+to+{model_name}"
+        f"&amount=1.00&currency_code=USD"
+        f"&notify_url={PAYPAL_IPN_URL}"
+        f"&custom={user_id}"
+    )
 
     try:
+        message = f"You've subscribed to {model_name}!\n\nProceed with payment: {payment_url}"
         if query.message.text:
-            # Edit message text to confirm subscription
-            await query.edit_message_text(text=f"You've subscribed to {model_name}! Please proceed with payment: {payment_url}")
+            await query.edit_message_text(text=message)
         elif query.message.caption:
-            # Edit caption to confirm subscription
-            await query.edit_message_caption(caption=f"You've subscribed to {model_name}! Please proceed with payment: {payment_url}")
+            await query.edit_message_caption(caption=message)
         else:
-            # Fallback message
-            await query.message.reply_text(f"You've subscribed to {model_name}! Please proceed with payment: {payment_url}")
+            await query.message.reply_text(message)
     except Exception as e:
-        print(f"Error editing message: {e}")
+        logger.error(f"Error editing message: {e}")
 
 
 def start_telegram_bot():
