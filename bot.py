@@ -50,6 +50,21 @@ def ipn():
         logger.error(f"Payment verification FAILED: {ipn_data}")
         return jsonify({"message": "Payment verification failed."})
 
+@app.route("/test_ipn")
+def test_ipn():
+    from telegram import Bot
+    bot = Bot(token=os.environ["BOT_API_TOKEN"])
+
+    # Replace with your own Telegram user ID
+    test_user_id = 6793648677  
+
+    try:
+        bot.send_message(chat_id=test_user_id, text="✅ Test: Your payment has been successfully processed.")
+        return "✅ Test message sent to your Telegram account!"
+    except Exception as e:
+        return f"❌ Failed to send message: {e}"
+
+
 
 async def start(update: Update, context: CallbackContext) -> None:
     for model in models:
@@ -67,6 +82,7 @@ async def start(update: Update, context: CallbackContext) -> None:
             )
         except Exception as e:
             logger.error(f"Error sending message: {e}")
+            print(f"User ID: {update.message.from_user.id}")
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
