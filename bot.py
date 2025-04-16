@@ -14,27 +14,27 @@ models = [
     {
         "name": "Agustina Alexia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG",
-        "price": 5.00,
+        "price": 20.00,
         "channel_link": "https://t.me/+AgustinaAlexiaPrivate",
         "description": """
-            Hey babe 😘 It’s Agustina Alexia.
+Hey babe 😘 It’s Agustina Alexia.
 
-            I’ve got something special just for you – my exclusive private channel where I share only the most intimate and exclusive content.
+I’ve got something special just for you – my exclusive private channel where I share only the most intimate and exclusive content.
 
-            If you want to see photos and videos you won’t find anywhere else, then this is your chance to get up close and personal with me. 💋
-            This is a private space for my true fans, where I get to share everything – raw, real, and totally uncensored.
+If you want to see photos and videos you won’t find anywhere else, then this is your chance to get up close and personal with me. 💋
+This is a private space for my true fans, where I get to share everything – raw, real, and totally uncensored.
 
-            Trust me, you don’t want to miss this.
-            So, are you ready for a closer connection?
-            Hit that subscribe button and get instant access to all the content waiting for you. 🔥
+Trust me, you don’t want to miss this.
+So, are you ready for a closer connection?
+Hit that subscribe button and get instant access to all the content waiting for you. 🔥
 
-            🔞 18+ ONLY | No reposting | Respect is a must
-        """
+🔞 18+ ONLY | No reposting | Respect is a must
+"""
     },
     {
         "name": "Pia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg",
-        "price": 10.00,
+        "price": 20.00,
         "channel_link": "https://t.me/+PiaPrivateChannel",
         "description": "👠 Glamour shots • 🎥 Weekly video drops • ✨ VIP fan-only livestreams"
     },
