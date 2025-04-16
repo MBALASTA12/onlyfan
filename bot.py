@@ -52,7 +52,7 @@ bot = Bot(token=os.environ["BOT_API_TOKEN"])
 @app.route("/ipn", methods=["POST"])
 def ipn():
     ipn_data = request.form.to_dict()
-    verification_url = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"  # LIVE endpoint
+    verification_url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick..."  # LIVE endpoint
     verification_data = {
         "cmd": "_notify-validate",
         **ipn_data
