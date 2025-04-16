@@ -1,7 +1,7 @@
 ﻿from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Bot
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, CallbackContext, ContextTypes
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect
 import requests
 import logging
 from threading import Thread
