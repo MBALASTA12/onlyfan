@@ -144,7 +144,6 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     f"&custom={user_id}:{model_name}"
     f"&return=https://onlyfan-6cc5a61b58dd.herokuapp.com/success"
 )
-)
 
     # Create an inline button that links directly to the PayPal payment page
     payment_button = InlineKeyboardButton(text=f"Pay {model_price:.2f} USD", url=payment_url)
