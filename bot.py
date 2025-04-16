@@ -11,9 +11,10 @@ PAYPAL_EMAIL = "abastasjeogeel12@gmail.com"  # <-- UPDATE THIS
 PAYPAL_IPN_URL = "https://onlyfan-6cc5a61b58dd.herokuapp.com/ipn"
 
 models = [
-    {"name": "Agustina Alexia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG"},
-    {"name": "Pia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg"},
+    {"name": "Agustina Alexia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG", "price": 5.00},
+    {"name": "Pia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg", "price": 10.00},
 ]
+
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -56,29 +57,37 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    model_name = query.data.split("_")[1]
+    model_name = query.data.split("_")[1]  # Extract model name from callback data
     user_id = query.from_user.id
 
-    # Direct PayPal payment link
+    # Find the model data (including price) for the selected model
+    selected_model = next((model for model in models if model["name"] == model_name), None)
+    if selected_model:
+        model_price = selected_model["price"]
+    else:
+        model_price = 1.00  # Default price if model not found (can be updated)
+
+    # Create the PayPal payment link with dynamic pricing
     payment_url = (
         f"https://www.paypal.com/cgi-bin/webscr"
         f"?cmd=_xclick&business={PAYPAL_EMAIL}"
         f"&item_name=Subscription+to+{model_name}"
-        f"&amount=1.00&currency_code=USD"
+        f"&amount={model_price:.2f}&currency_code=USD"
         f"&notify_url={PAYPAL_IPN_URL}"
         f"&custom={user_id}"
     )
 
+    # Create an inline button with the PayPal payment URL
+    payment_button = InlineKeyboardButton(text=f"Pay {model_price:.2f} USD", url=payment_url)
+    keyboard = InlineKeyboardMarkup([[payment_button]])
+
     try:
-        message = f"You've subscribed to {model_name}!\n\nProceed with payment: {payment_url}"
-        if query.message.text:
-            await query.edit_message_text(text=message)
-        elif query.message.caption:
-            await query.edit_message_caption(caption=message)
-        else:
-            await query.message.reply_text(message)
+        message = f"You've subscribed to {model_name}!\n\nClick below to proceed with payment."
+        # Send the message with the PayPal button
+        await query.edit_message_text(text=message, reply_markup=keyboard)
     except Exception as e:
         logger.error(f"Error editing message: {e}")
+
 
 
 def start_telegram_bot():
