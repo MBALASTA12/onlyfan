@@ -11,9 +11,20 @@ PAYPAL_EMAIL = "abastasjeogeel12@gmail.com"  # <-- UPDATE THIS
 PAYPAL_IPN_URL = "https://onlyfan-6cc5a61b58dd.herokuapp.com/ipn"
 
 models = [
-    {"name": "Agustina Alexia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG", "price": 5.00},
-    {"name": "Pia", "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg", "price": 10.00},
+    {
+        "name": "Agustina Alexia",
+        "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG",
+        "price": 20.00,
+        "channel_link": "https://t.me/Alexandriaatina"  # Example invite link
+    },
+    {
+        "name": "Pia",
+        "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg",
+        "price": 20.00,
+        "channel_link": "https://t.me/+PiaPrivateChannel"  # Example invite link
+    },
 ]
+
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
