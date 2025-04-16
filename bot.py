@@ -14,16 +14,32 @@ models = [
     {
         "name": "Agustina Alexia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG",
-        "price": 20.00,
-        "channel_link": "https://t.me/Alexandriaatina"  # Example invite link
+        "price": 5.00,
+        "channel_link": "https://t.me/+AgustinaAlexiaPrivate",
+        "description": """
+            Hey babe 😘 It’s Agustina Alexia.
+
+            I’ve got something special just for you – my exclusive private channel where I share only the most intimate and exclusive content.
+
+            If you want to see photos and videos you won’t find anywhere else, then this is your chance to get up close and personal with me. 💋
+            This is a private space for my true fans, where I get to share everything – raw, real, and totally uncensored.
+
+            Trust me, you don’t want to miss this.
+            So, are you ready for a closer connection?
+            Hit that subscribe button and get instant access to all the content waiting for you. 🔥
+
+            🔞 18+ ONLY | No reposting | Respect is a must
+        """
     },
     {
         "name": "Pia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg",
-        "price": 20.00,
-        "channel_link": "https://t.me/+PiaPrivateChannel"  # Example invite link
+        "price": 10.00,
+        "channel_link": "https://t.me/+PiaPrivateChannel",
+        "description": "👠 Glamour shots • 🎥 Weekly video drops • ✨ VIP fan-only livestreams"
     },
 ]
+
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -70,14 +86,18 @@ async def start(update: Update, context: CallbackContext) -> None:
         )
         keyboard = [[button]]
         try:
-            # Send message with both caption and photo
+            # Send message with both caption, photo, and description
+            message = f"{model['name']}\n\n{model['description']}"  # Including the model description
+
+            # Send the photo with the caption and description
             await update.message.reply_photo(
                 photo=model['photo'],
-                caption=f"{model['name']}",
+                caption=message,  # Send the model name and description as caption
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
         except Exception as e:
             logger.error(f"Error sending message: {e}")
+
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
