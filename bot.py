@@ -7,7 +7,7 @@ import logging
 from threading import Thread
 
 # Replace this with your PayPal LIVE business email
-PAYPAL_EMAIL = "abastasjeogeel12@gmail.com"  # <-- UPDATE THIS
+PAYPAL_EMAIL = "sb-jvljd40101210@business.example.com"  # <-- UPDATE THIS
 PAYPAL_IPN_URL = "https://onlyfan-6cc5a61b58dd.herokuapp.com/ipn"
 
 models = [
@@ -52,7 +52,7 @@ bot = Bot(token=os.environ["BOT_API_TOKEN"])
 @app.route("/ipn", methods=["POST"])
 def ipn():
     ipn_data = request.form.to_dict()
-    verification_url = "https://sandbox.paypal.com"  # LIVE endpoint
+    verification_url = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"  # LIVE endpoint
     verification_data = {
         "cmd": "_notify-validate",
         **ipn_data
