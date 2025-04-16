@@ -142,6 +142,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"&amount={model_price:.2f}&currency_code=USD"
         f"&notify_url={PAYPAL_IPN_URL}"
         f"&custom={user_id}"
+        f"&return=https://onlyfan-6cc5a61b58dd.herokuapp.com/success"
     )
 
     # Create an inline button that links directly to the PayPal payment page
