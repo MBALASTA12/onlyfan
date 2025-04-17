@@ -130,18 +130,31 @@ def payment_success():
     return '''
         <html>
             <head>
-                <meta http-equiv="refresh" content="0; url=https://t.me/OnlyFanAgencyBot?start=success" />
-                <script type="text/javascript">
-                    window.location.href = "https://t.me/OnlyFanAgencyBot?start=success";
-                </script>
+                <title>Payment Successful</title>
+                <style>
+                    body { 
+                        font-family: Arial, sans-serif; 
+                        text-align: center; 
+                        margin-top: 50px; 
+                    }
+                    a.button {
+                        display: inline-block;
+                        padding: 15px 25px;
+                        font-size: 18px;
+                        color: white;
+                        background-color: #4CAF50;
+                        border-radius: 8px;
+                        text-decoration: none;
+                    }
+                </style>
             </head>
             <body>
-                <p>Redirecting to Telegram... If you're not redirected, <a href="https://t.me/OnlyFanAgencyBot?start=success">click here</a>.</p>
+                <h2>✅ Payment Successful!</h2>
+                <p>Click the button below to return to Telegram:</p>
+                <a class="button" href="tg://resolve?domain=OnlyFanAgencyBot&start=success">Open Telegram</a>
             </body>
         </html>
     '''
-
-
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
