@@ -49,6 +49,9 @@ app = Flask(__name__)
 
 bot = Bot(token=os.environ["BOT_API_TOKEN"])
 
+# Temp storage for user subscriptions (in-memory)
+user_subscriptions = {}
+
 @app.route("/ipn", methods=["POST"])
 def ipn():
     ipn_data = request.form.to_dict()
@@ -86,6 +89,10 @@ def ipn():
                     f"Enjoy the content – and welcome to the private side. 🔥"
                 )
                 bot.send_message(chat_id=user_id, text=message, parse_mode="Markdown")
+
+                # Store for success redirect
+                user_subscriptions[user_id] = selected_model["name"]
+
             except Exception as e:
                 logger.error(f"Error sending message to user: {e}")
         else:
@@ -101,12 +108,32 @@ def ipn():
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
 
-    # If the user came from the PayPal redirect with start=success
+    # Handle /start success (after redirect from browser)
     if args and args[0] == "success":
-        await update.message.reply_text("✅ Payment successful! You’re now subscribed. Welcome to the private club 🔥")
-        return  # Stop here, no need to show models
+        user_id = update.effective_user.id
+        model_name = user_subscriptions.get(user_id)
 
-    # Otherwise, show model options
+        if model_name:
+            selected_model = next((m for m in models if m["name"].lower() == model_name.lower()), None)
+            if selected_model:
+                await update.message.reply_text(
+                    f"✅ Payment successful!\n\n"
+                    f"Here’s your exclusive access to *{selected_model['name']}*’s private channel:\n"
+                    f"{selected_model['channel_link']}",
+                    parse_mode="Markdown"
+                )
+            else:
+                await update.message.reply_text("✅ Payment successful, but model info not found.")
+        else:
+            await update.message.reply_text(
+                "✅ Payment confirmed, but no subscription record found.\n"
+                "If you didn’t receive the link, please message us."
+            )
+        # Optionally clear after use
+        user_subscriptions.pop(user_id, None)
+        return
+
+    # Default: show available models
     for model in models:
         button = InlineKeyboardButton(
             text=f"Subscribe to {model['name']}",
@@ -114,14 +141,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         keyboard = [[button]]
         try:
-            message = f"{model['name']}\n\n{model['description']}"
             await update.message.reply_photo(
                 photo=model['photo'],
-                caption=message,
+                caption=f"{model['name']}\n\n{model['description']}",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
         except Exception as e:
-            logger.error(f"Error sending message: {e}")
+            logger.error(f"Error sending model message: {e}")
 
 
 
@@ -132,11 +158,7 @@ def payment_success():
             <head>
                 <title>Payment Successful</title>
                 <style>
-                    body { 
-                        font-family: Arial, sans-serif; 
-                        text-align: center; 
-                        margin-top: 50px; 
-                    }
+                    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
                     a.button {
                         display: inline-block;
                         padding: 15px 25px;
@@ -150,7 +172,7 @@ def payment_success():
             </head>
             <body>
                 <h2>✅ Payment Successful!</h2>
-                <p>Click the button below to return to Telegram:</p>
+                <p>Click below to return to Telegram:</p>
                 <a class="button" href="tg://resolve?domain=OnlyFanAgencyBot&start=success">Open Telegram</a>
             </body>
         </html>
