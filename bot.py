@@ -131,9 +131,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "If you didn’t receive the link, please message us."
             )
 
-        # Clean up after success
+        # Clean up after success to avoid reuse
         user_subscriptions.pop(user_id, None)
-        return
+
+        return  # 🚫 DO NOT CONTINUE TO SHOW MODELS OR REPLY KEYBOARD!
 
     # Default: show available models
     for model in models:
@@ -151,7 +152,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception as e:
             logger.error(f"Error sending model message: {e}")
 
-    # ✅ Show reply keyboard after showing models (not during 'success')
+    # ✅ Now safe to show the reply keyboard
     reply_markup = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton("💬 Contact Support")],
