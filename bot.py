@@ -158,7 +158,22 @@ def payment_success():
             <head>
                 <title>Payment Successful</title>
                 <style>
-                    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+                    body { 
+                        font-family: Arial, sans-serif; 
+                        text-align: center; 
+                        margin-top: 50px; 
+                        background-color: #f4f4f9;
+                        color: #333;
+                    }
+                    h2 {
+                        font-size: 32px;
+                        color: #4CAF50;
+                    }
+                    p.instruction {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #333;
+                    }
                     a.button {
                         display: inline-block;
                         padding: 15px 25px;
@@ -167,16 +182,39 @@ def payment_success():
                         background-color: #4CAF50;
                         border-radius: 8px;
                         text-decoration: none;
+                        margin-top: 30px;
+                    }
+                    .arrow {
+                        font-size: 40px;
+                        color: #4CAF50;
+                        margin-top: 30px;
+                    }
+                    .arrow-container {
+                        margin-top: 20px;
+                    }
+                    .note {
+                        font-size: 20px;
+                        color: #777;
+                        margin-top: 20px;
                     }
                 </style>
             </head>
             <body>
                 <h2>✅ Payment Successful!</h2>
                 <p>Click below to return to Telegram:</p>
+                <p class="instruction">Please make sure to click or tap the button to access your exclusive content before closing this page!</p>
+                
+                <div class="arrow-container">
+                    <span class="arrow">⬇️</span>
+                </div>
+                
                 <a class="button" href="tg://resolve?domain=OnlyFanAgencyBot&start=success">Open Telegram</a>
+                
+                <p class="note">If you do not tap the button, you may miss the exclusive content.</p>
             </body>
         </html>
     '''
+
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
