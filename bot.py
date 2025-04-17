@@ -109,18 +109,9 @@ def ipn():
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
 
-    # Create reply keyboard (bottom menu)
-    reply_keyboard = ReplyKeyboardMarkup(
-        [
-            [KeyboardButton("💬 Contact Support"), KeyboardButton("💸 Earn Money")]
-        ],
-        resize_keyboard=True
-    )
-
-    user_id = update.effective_user.id
-
     # Handle /start success (after redirect from browser)
     if args and args[0] == "success":
+        user_id = update.effective_user.id
         model_name = user_subscriptions.get(user_id)
 
         if model_name:
@@ -130,25 +121,20 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     f"✅ Payment successful!\n\n"
                     f"Here’s your exclusive access to *{selected_model['name']}*’s private channel:\n"
                     f"{selected_model['channel_link']}",
-                    parse_mode="Markdown",
-                    reply_markup=reply_keyboard
+                    parse_mode="Markdown"
                 )
             else:
-                await update.message.reply_text(
-                    "✅ Payment successful, but model info not found.",
-                    reply_markup=reply_keyboard
-                )
+                await update.message.reply_text("✅ Payment successful, but model info not found.")
         else:
             await update.message.reply_text(
                 "✅ Payment confirmed, but no subscription record found.\n"
-                "If you didn’t receive the link, please message us.",
-                reply_markup=reply_keyboard
+                "If you didn’t receive the link, please message us."
             )
-
+        # Optionally clear after use
         user_subscriptions.pop(user_id, None)
         return
 
-    # Default: show models
+    # Default: show available models
     for model in models:
         button = InlineKeyboardButton(
             text=f"Subscribe to {model['name']}",
@@ -164,8 +150,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception as e:
             logger.error(f"Error sending model message: {e}")
 
-    # Show the reply keyboard after showing all models
-    await update.message.reply_text("What would you like to do next?", reply_markup=reply_keyboard)
+        # Show reply keyboard after all model messages
+    reply_keyboard = [
+        [KeyboardButton("💬 Contact Support"), KeyboardButton("💸 Earn Money")]
+    ]
+    await update.message.reply_text(
+        "👇 Choose an option below:",
+        reply_markup=ReplyKeyboardMarkup(reply_keyboard, resize_keyboard=True)
+    )
 
 
 async def contact_support(update: Update, context: ContextTypes.DEFAULT_TYPE):
