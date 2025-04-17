@@ -167,7 +167,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def contact_support(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Need help? Just message @OnlyFansSupportTeam and we’ll take care of you. 💁‍♂️")
+    await update.message.reply_text("Need help? Just message https://t.me/+-ASFfWe6vPoyNGRl and we’ll take care of you. 💁‍♂️")
 
 async def earn_money(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Provide instructions for earning money by solving CAPTCHA tasks
