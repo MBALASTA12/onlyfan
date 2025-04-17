@@ -1,4 +1,5 @@
 ﻿from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Bot
+from telegram import ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, CallbackContext, ContextTypes
 import os
 from flask import Flask, request, jsonify, redirect
@@ -108,9 +109,18 @@ def ipn():
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
 
+    # Create reply keyboard (bottom menu)
+    reply_keyboard = ReplyKeyboardMarkup(
+        [
+            [KeyboardButton("💬 Contact Support"), KeyboardButton("💸 Earn Money")]
+        ],
+        resize_keyboard=True
+    )
+
+    user_id = update.effective_user.id
+
     # Handle /start success (after redirect from browser)
     if args and args[0] == "success":
-        user_id = update.effective_user.id
         model_name = user_subscriptions.get(user_id)
 
         if model_name:
@@ -120,20 +130,25 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     f"✅ Payment successful!\n\n"
                     f"Here’s your exclusive access to *{selected_model['name']}*’s private channel:\n"
                     f"{selected_model['channel_link']}",
-                    parse_mode="Markdown"
+                    parse_mode="Markdown",
+                    reply_markup=reply_keyboard
                 )
             else:
-                await update.message.reply_text("✅ Payment successful, but model info not found.")
+                await update.message.reply_text(
+                    "✅ Payment successful, but model info not found.",
+                    reply_markup=reply_keyboard
+                )
         else:
             await update.message.reply_text(
                 "✅ Payment confirmed, but no subscription record found.\n"
-                "If you didn’t receive the link, please message us."
+                "If you didn’t receive the link, please message us.",
+                reply_markup=reply_keyboard
             )
-        # Optionally clear after use
+
         user_subscriptions.pop(user_id, None)
         return
 
-    # Default: show available models
+    # Default: show models
     for model in models:
         button = InlineKeyboardButton(
             text=f"Subscribe to {model['name']}",
@@ -148,6 +163,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
         except Exception as e:
             logger.error(f"Error sending model message: {e}")
+
+    # Show the reply keyboard after showing all models
+    await update.message.reply_text("What would you like to do next?", reply_markup=reply_keyboard)
+
+
+async def contact_support(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Need help? Just message @OnlyFansSupportTeam and we’ll take care of you. 💁‍♂️")
+
+async def earn_money(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("You can earn by sharing your referral link!\nUse /referral to get your unique invite. 💰")
+
 
 
 
@@ -265,6 +291,8 @@ def start_telegram_bot():
     application = Application.builder().token(os.environ["BOT_API_TOKEN"]).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(button))
+    application.add_handler(MessageHandler(filters.TEXT & filters.Regex("^💬 Contact Support$"), contact_support))
+    application.add_handler(MessageHandler(filters.TEXT & filters.Regex("^💸 Earn Money$"), earn_money))
     application.run_polling()
 
 def main():
