@@ -150,14 +150,19 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception as e:
             logger.error(f"Error sending model message: {e}")
 
-        # Show reply keyboard after all model messages
-    reply_keyboard = [
-        [KeyboardButton("💬 Contact Support"), KeyboardButton("💸 Earn Money")]
-    ]
-    await update.message.reply_text(
-        "👇 Choose an option below:",
-        reply_markup=ReplyKeyboardMarkup(reply_keyboard, resize_keyboard=True)
-    )
+    # At the end of your function after showing models:
+reply_markup = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton("💬 Contact Support")],
+        [KeyboardButton("💸 Earn Money")]
+    ],
+    resize_keyboard=True
+)
+
+await update.message.reply_text(
+    "Choose an option below 👇",
+    reply_markup=reply_markup
+)
 
 
 async def contact_support(update: Update, context: ContextTypes.DEFAULT_TYPE):
