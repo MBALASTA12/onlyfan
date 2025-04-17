@@ -170,7 +170,12 @@ async def contact_support(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Need help? Just message @OnlyFansSupportTeam and we’ll take care of you. 💁‍♂️")
 
 async def earn_money(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("You can earn by sharing your referral link!\nUse /referral to get your unique invite. 💰")
+    # Provide instructions for earning money by solving CAPTCHA tasks
+    await update.message.reply_text(
+        "You can earn money by solving CAPTCHA tasks!\n\n"
+        "Start playing and earning now by completing tasks. 💰\n\n"
+        "Visit @driverridebot_bot to start earning!"
+    )
 
 
 
