@@ -127,7 +127,20 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @app.route("/success", methods=["GET"])
 def payment_success():
-    return redirect("https://t.me/OnlyFanAgencyBot?start=success")  # Replace with your actual bot username
+    return '''
+        <html>
+            <head>
+                <meta http-equiv="refresh" content="0; url=https://t.me/OnlyFanAgencyBot?start=success" />
+                <script type="text/javascript">
+                    window.location.href = "https://t.me/OnlyFanAgencyBot?start=success";
+                </script>
+            </head>
+            <body>
+                <p>Redirecting to Telegram... If you're not redirected, <a href="https://t.me/OnlyFanAgencyBot?start=success">click here</a>.</p>
+            </body>
+        </html>
+    '''
+
 
 
 
