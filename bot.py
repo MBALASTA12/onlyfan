@@ -130,7 +130,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "✅ Payment confirmed, but no subscription record found.\n"
                 "If you didn’t receive the link, please message us."
             )
-        # Optionally clear after use
+
+        # Clean up after success
         user_subscriptions.pop(user_id, None)
         return
 
@@ -150,19 +151,20 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception as e:
             logger.error(f"Error sending model message: {e}")
 
-    # At the end of your function after showing models:
-reply_markup = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton("💬 Contact Support")],
-        [KeyboardButton("💸 Earn Money")]
-    ],
-    resize_keyboard=True
-)
+    # ✅ Show reply keyboard after showing models (not during 'success')
+    reply_markup = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton("💬 Contact Support")],
+            [KeyboardButton("💸 Earn Money")]
+        ],
+        resize_keyboard=True
+    )
 
-await update.message.reply_text(
-    "Choose an option below 👇",
-    reply_markup=reply_markup
-)
+    await update.message.reply_text(
+        "Choose an option below 👇",
+        reply_markup=reply_markup
+    )
+
 
 
 async def contact_support(update: Update, context: ContextTypes.DEFAULT_TYPE):
