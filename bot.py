@@ -8,14 +8,14 @@ import logging
 from threading import Thread
 
 # Replace this with your PayPal LIVE business email
-PAYPAL_EMAIL = "sb-jvljd40101210@business.example.com"  # <-- UPDATE THIS
+PAYPAL_EMAIL = "abastasjeogeel12@gmail.com"  # <-- UPDATE THIS
 PAYPAL_IPN_URL = "https://onlyfan-6cc5a61b58dd.herokuapp.com/ipn"
 
 models = [
     {
         "name": "Agustina Alexia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG",
-        "price": 20.00,
+        "price": 00.06,
         "channel_link": "https://t.me/+k2pqjOfYlBA3YTA9",
         "description": """
 Hey babe 😘 It’s Agustina Alexia.
@@ -56,7 +56,7 @@ user_subscriptions = {}
 @app.route("/ipn", methods=["POST"])
 def ipn():
     ipn_data = request.form.to_dict()
-    verification_url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick..."  # LIVE endpoint
+    verification_url = "https://ipnpb.paypal.com/cgi-bin/webscr"  # LIVE endpoint
     verification_data = {
         "cmd": "_notify-validate",
         **ipn_data
@@ -262,7 +262,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Create the PayPal payment link with dynamic pricing
     payment_url = (
-    f"https://www.sandbox.paypal.com/cgi-bin/webscr"
+    f"https://www.paypal.com/cgi-bin/webscr"
     f"?cmd=_xclick&business={PAYPAL_EMAIL}"
     f"&item_name=Subscription+to+{model_name}"
     f"&amount={model_price:.2f}&currency_code=USD"
