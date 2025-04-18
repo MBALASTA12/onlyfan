@@ -71,18 +71,15 @@ Wanna flirt, chat, and see what I don’t post anywhere else?
     "price": 10.00,
     "channel_link": "https://app.maloum.com/creator/ava69",
     "description": """
-**Welcome, darling. I'm Madalina Calotescu.** 💄✨
+**Hello, darling. I'm Madalina.** 💋✨
 
-If you crave elegance with a wicked twist, you’ve just found your perfect escape. On **Maloum**, I share premium, handpicked content — sensual, mysterious, and deeply personal.
+I’m here to captivate your senses and bring you into a world of **elegance and seduction**. On **Maloum**, I’ll show you a side of me that’s both **irresistible and mysterious**. 
 
-Think of it as your private invitation to explore my most exclusive side...  
-**Photos that tease. Videos that linger. Conversations that leave you wanting more.** 💋
+**Indulge in stunning photos, tantalizing videos, and private moments that you won’t find anywhere else.** 🎥
 
-This isn’t just content — it’s an experience.
+**Ready for an unforgettable experience?** Step into my world and let’s create something special. 💕
 
-**Come closer, subscribe, and enjoy the privilege.**
-
-🔞 **18+ ONLY | Classy. Confident. Unforgettable.**
+🔞 **18+ ONLY | Join me for exclusive access to true allure.**
 """
     },
     {
@@ -91,18 +88,15 @@ This isn’t just content — it’s an experience.
     "price": 10.00,
     "channel_link": "https://app.maloum.com/creator/evelina",
     "description": """
-**Welcome, darling. I'm Evelina.** 💄✨
+**Hey there, I’m Evelina.** 🌹✨
 
-**If you crave elegance with a wicked twist, you’ve just found your perfect escape.** On **Maloum**, I share **premium, handpicked content** — **sensual, mysterious, and deeply personal.**
+Looking for a mix of elegance with a touch of wild? Welcome to my private space on **Maloum**. Here, I share exclusive content that will spark your imagination and keep you coming back for more. 
 
-**Think of it as your private invitation to explore my most exclusive side...**  
-**Photos that tease. Videos that linger. Conversations that leave you wanting more.** 💋
+**It’s not just about watching — it’s about connecting.** From intimate photos to flirtatious chats, you’ll feel like we’re right there together. 💕
 
-**This isn’t just content — it’s an experience.**
+**Come and join me — let’s make some unforgettable memories.**
 
-**Come closer, subscribe, and enjoy the privilege.**
-
-🔞 **18+ ONLY | Classy. Confident. Unforgettable.**
+🔞 **18+ ONLY | Explore, enjoy, and experience the exclusive.**
 """
     },
     {
@@ -111,18 +105,15 @@ This isn’t just content — it’s an experience.
     "price": 10.00,
     "channel_link": "https://app.maloum.com/creator/lauraofficial",
     "description": """
-**Welcome, darling. I'm Ilinca Alexandra Piciorea.** 💄✨
+**Hi, I’m Ilinca Alexandra.** 💖✨
 
-**If you crave elegance with a wicked twist, you’ve just found your perfect escape.** On **Maloum**, I share **premium, handpicked content** — **sensual, mysterious, and deeply personal.**
+On **Maloum**, I bring you more than just content; I offer a **personal invitation** into my most **private moments**. My photos and videos are designed to leave you wanting more, teasing your every desire. 💋
 
-**Think of it as your private invitation to explore my most exclusive side...**  
-**Photos that tease. Videos that linger. Conversations that leave you wanting more.** 💋
+**Want to take our connection further?** Join me for exclusive chats and intimate interactions that go beyond the screen. 📲
 
-**This isn’t just content — it’s an experience.**
+**This is more than just a subscription — it's a chance to indulge in your deepest fantasies.**
 
-**Come closer, subscribe, and enjoy the privilege.**
-
-🔞 **18+ ONLY | Classy. Confident. Unforgettable.**
+🔞 **18+ ONLY | Immerse yourself in a world that’s just for you.**
 """
     }
 
