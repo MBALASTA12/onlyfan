@@ -45,7 +45,7 @@ Subscribe now and let’s turn your fantasies into reality. 💕
 
 🔞 18+ ONLY | No reposting | Respect is everything
 """
-    }
+    },
     {
     "name": "Milagros Knudsen Hefner",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/mila.PNG",
