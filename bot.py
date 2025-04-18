@@ -15,19 +15,16 @@ models = [
     {
         "name": "Agustina Alexia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG",
-        "price": 00.02,
-        "channel_link": "https://t.me/+k2pqjOfYlBA3YTA9",
+        "price": 20.00,
+        "channel_link": "https://app.maloum.com/creator/alexandraa",
         "description": """
 Hey babe 😘 It’s Agustina Alexia.
 
-I’ve got something special just for you – my exclusive private channel where I share only the most intimate and exclusive content.
+I’ve got something special waiting for you on Maloum – my private space where I share the most intimate and exclusive content just for my true fans. 💋
 
-If you want to see photos and videos you won’t find anywhere else, then this is your chance to get up close and personal with me. 💋
-This is a private space for my true fans, where I get to share everything – raw, real, and totally uncensored.
+When you subscribe, you’ll get full access to my hottest photos and videos, plus the chance to chat with me directly on the platform. It’s real, raw, and totally unfiltered.
 
-Trust me, you don’t want to miss this.
-So, are you ready for a closer connection?
-Hit that subscribe button and get instant access to all the content waiting for you. 🔥
+Don’t miss out on this exclusive connection. Subscribe now and come spend some time with me – I promise it’s worth it. 🔥
 
 🔞 18+ ONLY | No reposting | Respect is a must
 """
