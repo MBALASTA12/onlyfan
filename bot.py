@@ -30,12 +30,23 @@ Don’t miss out on this exclusive connection. Subscribe now and come spend some
 """
     },
     {
-        "name": "Pia",
-        "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/profile.jpg",
-        "price": 20.00,
-        "channel_link": "https://t.me/+PiaPrivateChannel",
-        "description": "👠 Glamour shots • 🎥 Weekly video drops • ✨ VIP fan-only livestreams"
-    },
+    "name": "Marine Humbert",
+    "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Marine.PNG",
+    "price": 20.00,
+    "channel_link": "https://app.maloum.com/creator/mara.muschi",
+    "description": """
+Hey love 💋 I’m Marine Humbert.
+
+Step into my world on Maloum — where glam meets irresistible temptation. I share exclusive content you won’t find anywhere else: stunning glamour shots, weekly video drops, and VIP-only livestreams made just for you. 👠🎥✨
+
+Want more than just watching? You can chat with me directly, get personal, and experience a connection like no other.
+
+Subscribe now and let’s turn your fantasies into reality. 💕
+
+🔞 18+ ONLY | No reposting | Respect is everything
+"""
+    }
+
 ]
 
 
