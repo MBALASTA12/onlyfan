@@ -46,6 +46,25 @@ Subscribe now and let’s turn your fantasies into reality. 💕
 🔞 18+ ONLY | No reposting | Respect is everything
 """
     }
+    {
+    "name": "Milagros Knudsen Hefner",
+    "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/mila.PNG",
+    "price": 20.00,
+    "channel_link": "https://app.maloum.com/creator/mila_",
+    "description": """
+**Psst... hey you 😘**  
+I’m Milagros – but you can call me Mila 💕
+
+Looking for something wild, fun, and a little dangerous? You’ve just found your favorite guilty pleasure. On **Maloum**, I post my most daring pics, spicy videos, and yes... you can totally slide into my DMs. 😈
+
+**I’m not here to play games – unless they’re naughty ones.**  
+Wanna flirt, chat, and see what I don’t post anywhere else?
+
+**Join now** and let’s make your screen sizzle. 🔥
+
+🔞 **18+ ONLY | Private access | Respect me and we’ll get along perfectly**
+"""
+    }
 
 ]
 
