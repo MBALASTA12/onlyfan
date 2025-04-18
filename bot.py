@@ -104,6 +104,26 @@ This isn’t just content — it’s an experience.
 
 🔞 **18+ ONLY | Classy. Confident. Unforgettable.**
 """
+    },
+    {
+    "name": "Ilinca Alexandra Piciorea",
+    "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/laura.PNG",
+    "price": 10.00,
+    "channel_link": "https://app.maloum.com/creator/lauraofficial",
+    "description": """
+**Welcome, darling. I'm Ilinca Alexandra Piciorea.** 💄✨
+
+**If you crave elegance with a wicked twist, you’ve just found your perfect escape.** On **Maloum**, I share **premium, handpicked content** — **sensual, mysterious, and deeply personal.**
+
+**Think of it as your private invitation to explore my most exclusive side...**  
+**Photos that tease. Videos that linger. Conversations that leave you wanting more.** 💋
+
+**This isn’t just content — it’s an experience.**
+
+**Come closer, subscribe, and enjoy the privilege.**
+
+🔞 **18+ ONLY | Classy. Confident. Unforgettable.**
+"""
     }
 
 ]
