@@ -132,6 +132,23 @@ Ready to explore a world of mystery, allure, and adventure? On **Maloum**, I bri
 
 🔞 **18+ ONLY | Enter my world, where the fun never ends.**
 """
+    },
+    {
+    "name": "Pia",
+    "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/pia.PNG",
+    "price": 10.00,
+    "channel_link": "https://app.maloum.com/creator/piapupsi",
+    "description": """
+**Hey there, I'm Pia.** 🌸✨
+
+Looking for a blend of elegance and playful charm? On **Maloum**, I offer you a world full of **exclusive moments** — where the **cute meets the seductive** in ways you’ve never imagined. 💕
+
+**Indulge in intimate photos, videos that tease, and personal messages that are all just for you.** Whether it's playful or sensual, you’ll always find something to make your heart race. 💋
+
+**I’m here to make you smile, but also to keep you coming back for more.** So, what are you waiting for?
+
+🔞 **18+ ONLY | Exclusive content just for you.**
+"""
     }
 
 ]
