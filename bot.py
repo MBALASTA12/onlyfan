@@ -115,6 +115,23 @@ On **Maloum**, I bring you more than just content; I offer a **personal invitati
 
 🔞 **18+ ONLY | Immerse yourself in a world that’s just for you.**
 """
+    },
+    {
+    "name": "Khelani",
+    "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/khelani.PNG",
+    "price": 20.00,
+    "channel_link": "https://app.maloum.com/creator/khelani",
+    "description": """
+**Hey, I’m Khelani.** 🌟✨
+
+Ready to explore a world of mystery, allure, and adventure? On **Maloum**, I bring you **exclusive content** that’s **sensual, daring, and full of surprises**. My photos and videos are made to leave you **mesmerized** and always craving more. 💋
+
+**Want more than just a sneak peek?** Let’s dive deeper together — enjoy **personal chats**, and indulge in my most intimate moments that are **just for you**. 📲
+
+**This isn’t just a subscription, it’s your front-row seat to my world.** 
+
+🔞 **18+ ONLY | Enter my world, where the fun never ends.**
+"""
     }
 
 ]
