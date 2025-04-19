@@ -16,7 +16,7 @@ models = [
         "name": "Agustina Alexia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG",
         "price": 10.00,
-        "channel_link": "https://app.maloum.com/creator/alexandraa",
+        "channel_link": "https://t.me/+k2pqjOfYlBA3YTA9",
         "description": """
 Hey babe 😘 It’s Agustina Alexia.
 
