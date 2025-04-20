@@ -15,7 +15,7 @@ models = [
     {
         "name": "Agustina Alexia",
         "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Profile.PNG",
-        "price": 10.00,
+        "price": 5.00,
         "channel_link": "https://t.me/+k2pqjOfYlBA3YTA9",
         "description": """
 Hey babe 😘 It’s Agustina Alexia.
@@ -32,7 +32,7 @@ Don’t miss out on this exclusive connection. Subscribe now and come spend some
     {
     "name": "Marine Humbert",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/Marine.PNG",
-    "price": 10.00,
+    "price": 5.00,
     "channel_link": "https://app.maloum.com/creator/mara.muschi",
     "description": """
 Hey love 💋 I’m Marine Humbert.
@@ -49,7 +49,7 @@ Subscribe now and let’s turn your fantasies into reality. 💕
     {
     "name": "Milagros Knudsen Hefner",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/mila.PNG",
-    "price": 10.00,
+    "price": 5.00,
     "channel_link": "https://app.maloum.com/creator/mila_",
     "description": """
 **Psst... hey you 😘**  
@@ -68,7 +68,7 @@ Wanna flirt, chat, and see what I don’t post anywhere else?
     {
     "name": "Madalina Calotescu",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/ava.PNG",
-    "price": 5.00,
+    "price": 3.00,
     "channel_link": "https://app.maloum.com/creator/ava69",
     "description": """
 **Hello, darling. I'm Madalina.** 💋✨
@@ -85,7 +85,7 @@ I’m here to captivate your senses and bring you into a world of **elegance and
     {
     "name": "Evelina",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/evelina.PNG",
-    "price": 5.00,
+    "price": 3.00,
     "channel_link": "https://app.maloum.com/creator/evelina",
     "description": """
 **Hey there, I’m Evelina.** 🌹✨
@@ -102,7 +102,7 @@ Looking for a mix of elegance with a touch of wild? Welcome to my private space 
     {
     "name": "Ilinca Alexandra Piciorea",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/laura.PNG",
-    "price": 5.00,
+    "price": 3.00,
     "channel_link": "https://app.maloum.com/creator/lauraofficial",
     "description": """
 **Hi, I’m Ilinca Alexandra.** 💖✨
@@ -119,7 +119,7 @@ On **Maloum**, I bring you more than just content; I offer a **personal invitati
     {
     "name": "Khelani",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/khelani.PNG",
-    "price": 10.00,
+    "price": 5.00,
     "channel_link": "https://app.maloum.com/creator/khelani",
     "description": """
 **Hey, I’m Khelani.** 🌟✨
@@ -136,7 +136,7 @@ Ready to explore a world of mystery, allure, and adventure? On **Maloum**, I bri
     {
     "name": "Pia",
     "photo": "https://raw.githubusercontent.com/MBALASTA12/onlyfan/main/photo/pia.PNG",
-    "price": 5.00,
+    "price": 3.00,
     "channel_link": "https://app.maloum.com/creator/piapupsi",
     "description": """
 **Hey there, I'm Pia.** 🌸✨
