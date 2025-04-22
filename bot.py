@@ -265,7 +265,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # After sending the models or payment result, add the reply keyboard
     reply_markup = ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton("💬 Contact Support")],
+            [KeyboardButton("📋 Apply for Model")],
             [KeyboardButton("💸 Earn Money")]
         ],
         resize_keyboard=True
